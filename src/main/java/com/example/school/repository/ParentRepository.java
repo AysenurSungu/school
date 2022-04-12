@@ -4,5 +4,6 @@ import com.example.school.entity.Parent;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ParentRepository extends JpaRepository<Parent, Long> {
+
 }
 
