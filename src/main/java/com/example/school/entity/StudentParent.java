@@ -1,47 +1,34 @@
 package com.example.school.entity;
 
+
 import lombok.*;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
-@Table(name = "classrooms")
+@Table(name = "studentParent")
 @Data
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @EqualsAndHashCode(exclude = {"id"})
-public class Classroom {
+public class StudentParent {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column
-    private Date year;
+    @OneToMany
+    @JoinColumn(name="parent_id")
+    private Parent parentId;
 
-    @Column
-    private Grade gradeId;
-
-    @Column
-    @Max(2)
-    private String section;
-
-    @Column
-    private boolean status;
-
-    @Column
-    @Max(45)
-    private String remarks;
-
-    @Column
-    private Teacher teacherId;
+    @ManyToOne
+    @JoinColumn(name="student_id")
+    private Student studentId;
 
     @CreatedDate
     private LocalDateTime createdDate;

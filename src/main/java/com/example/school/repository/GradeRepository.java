@@ -1,4 +1,8 @@
 package com.example.school.repository;
 
-public class GradeRepository {
+import com.example.school.entity.Grade;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface GradeRepository extends JpaRepository<Grade, Long> {
 }
+

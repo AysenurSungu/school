@@ -5,9 +5,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 @Table(name = "classrooms")
@@ -17,36 +15,35 @@ import java.util.Date;
 @AllArgsConstructor
 @Builder
 @EqualsAndHashCode(exclude = {"id"})
-public class Classroom {
+public class ClassroomStudent {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
-    private Date year;
+    @Column(name="exam1")
+    private int exam1;
 
-    @Column
-    private Grade gradeId;
+    @Column(name="exam2")
+    private int exam2;
 
-    @Column
-    @Max(2)
-    private String section;
+    @Column(name="average")
+    private double average;
 
-    @Column
-    private boolean status;
+    @Column(name="is_passed")
+    private boolean isPassed;
 
-    @Column
-    @Max(45)
-    private String remarks;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="course_id")
+    private Course course;
 
-    @Column
-    private Teacher teacherId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="student_id")
+    private Student student;
 
     @CreatedDate
     private LocalDateTime createdDate;
 
     @UpdateTimestamp
     private LocalDateTime lastModifiedDate;
-
 }

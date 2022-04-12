@@ -1,5 +1,6 @@
 package com.example.school.entity;
 
+import com.example.school.validation.TcKimlikNo;
 import lombok.*;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
@@ -17,10 +18,13 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@EqualsAndHashCode(exclude = {"id"})
 public class Parent {
+
     @Id
+    @TcKimlikNo
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long parentId;
+    private Long id;
 
     @Column
     @Email

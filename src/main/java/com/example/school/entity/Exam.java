@@ -15,10 +15,12 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@EqualsAndHashCode(exclude = {"id"})
 public class Exam {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long examId;
+    private Long id;
 
     @Column
     private ExamType examTypeId;
