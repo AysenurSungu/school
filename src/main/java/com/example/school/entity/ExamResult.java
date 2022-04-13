@@ -22,11 +22,17 @@ public class ExamResult{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column
-    private Student studentId;
+    @ManyToOne
+    @JoinColumn(name="student_id")
+    private Student student;
 
-    @Column
-    private Course courseId;
+    @ManyToOne
+    @JoinColumn(name="course_id")
+    private Course course;
+
+    @ManyToOne
+    @JoinColumn(name="exam_id")
+    private Exam exam;
 
     @Column
     @Max(45)

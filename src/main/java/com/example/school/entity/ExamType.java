@@ -1,5 +1,6 @@
 package com.example.school.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
@@ -7,6 +8,7 @@ import org.springframework.data.annotation.CreatedDate;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "examTypes")
@@ -25,6 +27,10 @@ public class ExamType{
     @Column
     @Max(45)
     private String examTypeName;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "examType")
+    private List<Exam> exams;
 
     @Column
     @Max(45)

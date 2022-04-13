@@ -1,6 +1,7 @@
 package com.example.school.entity;
 
 import com.example.school.validation.TcKimlikNo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
@@ -10,6 +11,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "students")
@@ -53,8 +55,20 @@ public class Student {
     @Column
     private String mobile;
 
-    @Column
-    private Parent parentId;
+    @JsonIgnore
+    @OneToMany(mappedBy = "student")
+    private List<StudentParent> studentParent;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "student")
+    private List<ExamResult> examResults;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "student")
+    private List<ClassroomStudent> classroomStudents;
+
+    @OneToMany(mappedBy = "student")
+    private List<Attendance> attendance;
 
     @Column
     private Date dateOfJoin;

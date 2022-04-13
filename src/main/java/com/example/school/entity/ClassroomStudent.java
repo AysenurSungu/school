@@ -34,8 +34,8 @@ public class ClassroomStudent {
     private boolean isPassed;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="course_id")
-    private Course course;
+    @JoinColumn(name="classroom_id")
+    private Classroom classroom;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="student_id")

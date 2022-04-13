@@ -22,13 +22,13 @@ public class StudentParent {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name="parent_id")
-    private Parent parentId;
+    private Parent parent;
 
     @ManyToOne
     @JoinColumn(name="student_id")
-    private Student studentId;
+    private Student student;
 
     @CreatedDate
     private LocalDateTime createdDate;

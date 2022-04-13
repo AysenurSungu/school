@@ -1,5 +1,6 @@
 package com.example.school.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
@@ -7,6 +8,7 @@ import org.springframework.data.annotation.CreatedDate;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "courses")
@@ -30,8 +32,13 @@ public class Course {
     @Max(45)
     private String description;
 
-    @Column
-    private Grade gradeId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="grade_id")
+    private Grade grade;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "course")
+    private List<ExamResult> examResults;
 
     @CreatedDate
     private LocalDateTime createdDate;

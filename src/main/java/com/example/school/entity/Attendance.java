@@ -27,8 +27,9 @@ public class Attendance {
     @Column
     private boolean status;
 
-    @Column
-    private Student studentId;
+    @ManyToOne
+    @JoinColumn(name="student_id")
+    private Student student;
 
     @CreatedDate
     private LocalDateTime createdDate;

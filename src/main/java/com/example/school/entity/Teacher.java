@@ -39,6 +39,10 @@ public class Teacher {
     @Max(45)
     private String firstName;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="classroom_id")
+    private Classroom classroom;
+
     @Column
     @Max(45)
     private String lastName;

@@ -1,5 +1,6 @@
 package com.example.school.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
@@ -7,6 +8,7 @@ import org.springframework.data.annotation.CreatedDate;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "exams")
@@ -22,8 +24,13 @@ public class Exam {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column
-    private ExamType examTypeId;
+    @JsonIgnore
+    @OneToMany(mappedBy = "exam")
+    private List<ExamResult> examResults;
+
+    @ManyToOne
+    @JoinColumn(name="exam_type_id")
+    private ExamType examType;
 
     @Column
     @Max(45)

@@ -1,5 +1,6 @@
 package com.example.school.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
@@ -8,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "classrooms")
@@ -27,9 +29,6 @@ public class Classroom {
     private Date year;
 
     @Column
-    private Grade gradeId;
-
-    @Column
     @Max(2)
     private String section;
 
@@ -40,8 +39,17 @@ public class Classroom {
     @Max(45)
     private String remarks;
 
-    @Column
-    private Teacher teacherId;
+    @JsonIgnore
+    @OneToMany(mappedBy = "classroom", fetch = FetchType.LAZY)
+    private List<ClassroomStudent> classroomStudents;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "classroom", fetch = FetchType.LAZY)
+    private List<Teacher> teachers;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="grade_id")
+    private Grade grade;
 
     @CreatedDate
     private LocalDateTime createdDate;
