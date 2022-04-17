@@ -17,7 +17,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@EqualsAndHashCode(exclude = {"id"})
 public class ExamType{
 
     @Id
@@ -34,7 +33,7 @@ public class ExamType{
 
     @Column
     @Max(45)
-    private String desc;
+    private String descriptions;
 
     @CreatedDate
     private LocalDateTime createdDate;

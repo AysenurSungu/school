@@ -2,6 +2,7 @@ package com.example.school.entity;
 
 import com.example.school.validation.TcKimlikNo;
 import lombok.*;
+import org.hibernate.Hibernate;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -10,15 +11,16 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = "teachers")
-@Data
+@Getter
+@Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@EqualsAndHashCode(exclude = {"id"})
 public class Teacher {
 
     @Id
@@ -72,4 +74,17 @@ public class Teacher {
 
     @UpdateTimestamp
     private LocalDateTime lastModifiedDate;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Teacher teacher = (Teacher) o;
+        return id != null && Objects.equals(id, teacher.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

@@ -17,8 +17,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@EqualsAndHashCode(exclude = {"id"})
 public class Grade {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -29,14 +29,16 @@ public class Grade {
 
     @Column
     @Max(45)
-    private String desc;
+    private String descriptions;
 
     @JsonIgnore
     @OneToMany(mappedBy = "grade", fetch = FetchType.LAZY)
+    @ToString.Exclude
     private List<Course> courses;
 
     @JsonIgnore
     @OneToMany(mappedBy = "grade", fetch = FetchType.LAZY)
+    @ToString.Exclude
     private List<Classroom> classrooms;
 
     @CreatedDate

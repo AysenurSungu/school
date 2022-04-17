@@ -18,7 +18,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@EqualsAndHashCode(exclude = {"id"})
 public class Classroom {
 
     @Id
@@ -29,14 +28,12 @@ public class Classroom {
     private Date year;
 
     @Column
-    @Max(2)
     private String section;
 
     @Column
     private boolean status;
 
     @Column
-    @Max(45)
     private String remarks;
 
     @JsonIgnore
