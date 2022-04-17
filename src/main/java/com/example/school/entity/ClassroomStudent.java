@@ -8,30 +8,17 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "classrooms")
+@Table(name = "classroomStudent")
 @Data
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@EqualsAndHashCode(exclude = {"id"})
 public class ClassroomStudent {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name="exam1")
-    private int exam1;
-
-    @Column(name="exam2")
-    private int exam2;
-
-    @Column(name="average")
-    private double average;
-
-    @Column(name="is_passed")
-    private boolean isPassed;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="classroom_id")
