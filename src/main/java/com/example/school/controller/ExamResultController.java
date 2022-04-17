@@ -8,12 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.annotation.RequestScope;
 
 @RestController
-@RequestMapping("/grade")
+@RequestMapping("/examResultController")
 @CrossOrigin
 @RequestScope
 @RequiredArgsConstructor
 @Validated
-public class GradeController {
-
-
+public class ExamResultController {
 }
